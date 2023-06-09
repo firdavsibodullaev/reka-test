@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+    Route::post('/', [TodoController::class, 'store'])->name('todo.store');
 });
 
 Auth::routes();
