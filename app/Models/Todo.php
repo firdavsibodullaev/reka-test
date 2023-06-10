@@ -22,6 +22,12 @@ class Todo extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
+    protected $fillable = [
+        'name',
+        'body',
+        'user_id'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -30,5 +36,10 @@ class Todo extends Model implements HasMedia
     public function image(): MorphOne
     {
         return $this->morphOne(Media::class, 'model');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

@@ -2,14 +2,26 @@
 
 namespace App\Providers;
 
+use App\Contracts\MediaLibraryRepositoryInterface;
+use App\Contracts\TagRepositoryInterface;
+use App\Contracts\TagServiceInterface;
 use App\Contracts\TodoRepositoryInterface;
+use App\Contracts\TodoServiceInterface;
+use App\Repositories\MediaLibraryRepository;
+use App\Repositories\TagRepository;
 use App\Repositories\TodoRepository;
+use App\Services\TagService;
+use App\Services\TodoService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
     public array $bindings = [
-        TodoRepositoryInterface::class => TodoRepository::class
+        MediaLibraryRepositoryInterface::class => MediaLibraryRepository::class,
+        TagRepositoryInterface::class => TagRepository::class,
+        TagServiceInterface::class => TagService::class,
+        TodoRepositoryInterface::class => TodoRepository::class,
+        TodoServiceInterface::class => TodoService::class
     ];
 
     /**
