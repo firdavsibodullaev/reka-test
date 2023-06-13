@@ -8,5 +8,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 interface MediaLibraryRepositoryInterface
 {
-    public function addMedia(HasMedia $model, UploadedFile $file, string $collection = 'default'):Media;
+    public function addMedia(HasMedia $model, UploadedFile $file): Media;
+
+    public function deleteMedia(HasMedia $model): bool;
 }
