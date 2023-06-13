@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface TodoRepositoryInterface
 {
-    public function getList(): Collection;
+    public function getList(string $q): Collection;
 
     public function create(array $payload): Todo;
 

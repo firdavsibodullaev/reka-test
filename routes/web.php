@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::post('', [TodoController::class, 'store'])->name('todo.store');
     Route::put('{todo}', [TodoController::class, 'update'])->name('todo.update')->whereNumber('todo');
     Route::delete('{todo}', [TodoController::class, 'destroy'])->name('todo.destroy')->whereNumber('todo');
+    Route::get('search', [TodoController::class, 'search'])->name('todo.search');
 });
 
 Auth::routes();

@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 @section('content')
+    <div class="my-3">
+        <input type="text" class="form-control" id="search-input" placeholder="Поиск по названию">
+    </div>
     <button type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"

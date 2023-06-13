@@ -53,4 +53,11 @@ class TodoController extends Controller
 
         return response("", 204);
     }
+
+    public function search()
+    {
+        $todos = $this->todoService->search(request('q', ''));
+
+        return TodoResource::collection($todos);
+    }
 }

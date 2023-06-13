@@ -7,7 +7,9 @@ use App\Contracts\TagServiceInterface;
 use App\Contracts\TodoRepositoryInterface;
 use App\Contracts\TodoServiceInterface;
 use App\Models\Todo;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class TodoService implements TodoServiceInterface
 {
@@ -17,6 +19,13 @@ class TodoService implements TodoServiceInterface
         private readonly TodoRepositoryInterface         $todoRepository
     )
     {
+    }
+
+    public function search(string $q): Collection
+    {
+        $q = Str::lower($q);
+
+        return $this->todoRepository->getList($q);
     }
 
     public function create(array $payload): Todo

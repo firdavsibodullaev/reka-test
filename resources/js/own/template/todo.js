@@ -1,5 +1,5 @@
 function getHtml(data) {
-    return `<div class="card">
+    return `<div class="card" id="card-${data.id}">
                 <div class="card-body">
                     <h4><strong>${data.name}</strong></h4>
                     <hr>
@@ -18,11 +18,23 @@ function getHtml(data) {
                     ${getTags(data.tags)}
                     </div>
                 </div>
+                <div class="card-footer">
+                    <button type="button"
+                            class="btn btn-warning btn-sm open-edit-task-modal"
+                            data-id="${data.id}"
+                            data-bs-target="#edit-task-modal">Изменить
+                    </button>
+                    <button type="button"
+                            class="btn btn-danger btn-sm open-delete-task-modal"
+                            data-id="${data.id}"
+                            data-bs-target="#edit-task-modal">Удалить
+                    </button>
+                </div>
             </div>`;
 }
 
 function getTags(tags) {
-    return "";
+    return tags.map((tag) => `#${tag.name}`).join(' ');
 }
 
 

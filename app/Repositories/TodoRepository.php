@@ -4,16 +4,21 @@ namespace App\Repositories;
 
 use App\Contracts\TodoRepositoryInterface;
 use App\Models\Todo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class TodoRepository implements TodoRepositoryInterface
 {
-    public function getList(): Collection
+    public function getList(string $q = ''): Collection
     {
         return Todo::query()
             ->with(['user', 'tags', 'image'])
             ->where('user_id', auth()->id())
             ->orderByDesc('id')
+            ->when($q,
+                fn(Builder $builder, string $q) => $builder->where(DB::raw("LOWER(name)"), "like", "%$q%")
+            )
             ->get();
     }
 

@@ -2,7 +2,7 @@ import {Modal} from "bootstrap";
 import $ from "jquery";
 import toastr from "toastr";
 
-$('.open-delete-task-modal').click(function () {
+$(document).on('click', '.open-delete-task-modal', function () {
     let modalElement = document.querySelector('#delete-task-modal');
     let modal = Modal.getOrCreateInstance(modalElement);
     let id = $(this).attr('data-id');
@@ -11,7 +11,7 @@ $('.open-delete-task-modal').click(function () {
 
 });
 
-$('.todo-delete-form-save').click(function () {
+$(document).on('click', '.todo-delete-form-save', function () {
     let modalElement = document.querySelector('#delete-task-modal');
     let modal = Modal.getInstance(modalElement);
     let id = $(modalElement).attr('data-id');

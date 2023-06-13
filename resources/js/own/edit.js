@@ -2,7 +2,7 @@ import $ from "jquery";
 import {Modal} from "bootstrap";
 import toastr from "toastr";
 
-$('.open-edit-task-modal').click(function () {
+$(document).on('click', '.open-edit-task-modal', function () {
     let modalElement = document.querySelector('#edit-task-modal');
     let modal = Modal.getOrCreateInstance(modalElement);
     let id = $(this).attr('data-id');
@@ -28,7 +28,7 @@ function parseTags(tags) {
     return tags.map((tag) => tag.name).join(' ');
 }
 
-$('.todo-edit-form-save').click(function () {
+$(document).on('click', '.todo-edit-form-save', function () {
     let form = $('#todo-edit-form');
     let file = form.find('[name=image]').prop('files')[0];
     let fd = new FormData();
@@ -66,5 +66,5 @@ $('.todo-edit-form-save').click(function () {
 
 document.querySelector('#edit-task-modal').addEventListener('hidden.bs.modal', function () {
     document.getElementById('todo-edit-form').reset();
-    document.getElementById('todo-edit-form').attr('action', '');
+    $('#todo-edit-form').attr('action', '');
 });
