@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class TodoRepository implements TodoRepositoryInterface
 {
-    public function getList(string $q = ''): Collection
+    public function getList(string $q = '', string $tag = ''): Collection
     {
         return Todo::query()
             ->with(['user', 'tags', 'image'])
@@ -19,6 +19,11 @@ class TodoRepository implements TodoRepositoryInterface
             ->when($q,
                 fn(Builder $builder, string $q) => $builder->where(DB::raw("LOWER(name)"), "like", "%$q%")
             )
+            ->when($tag, function (Builder $builder, string $tag) {
+                $builder->whereHas('tags', function (Builder $builder) use ($tag) {
+                    return $builder->where("name", "=", $tag);
+                });
+            })
             ->get();
     }
 

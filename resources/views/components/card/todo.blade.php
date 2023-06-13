@@ -14,7 +14,7 @@
             </div>
         </div>
         <div>
-            {{ $todo->tags->map(fn(\App\Models\Tag $tag) => "#".$tag->name)->implode(' ') }}
+            {!! get_tags($todo->tags) !!}
         </div>
     </div>
     <div class="card-footer">

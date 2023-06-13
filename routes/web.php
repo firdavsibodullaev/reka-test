@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware('auth')->group(function () {
     Route::get('', [TodoController::class, 'index'])->name('todo.index');
-    Route::get('{todo}', [TodoController::class, 'show'])->name('todo.index')->whereNumber('todo');
+    Route::get('{todo}', [TodoController::class, 'show'])->name('todo.show')->whereNumber('todo');
     Route::post('', [TodoController::class, 'store'])->name('todo.store');
     Route::put('{todo}', [TodoController::class, 'update'])->name('todo.update')->whereNumber('todo');
     Route::delete('{todo}', [TodoController::class, 'destroy'])->name('todo.destroy')->whereNumber('todo');

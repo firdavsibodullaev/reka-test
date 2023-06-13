@@ -23,7 +23,7 @@ class TodoController extends Controller
      */
     public function index(): string
     {
-        $todos = $this->todoRepository->getList();
+        $todos = $this->todoRepository->getList(tag: request('tag', ''));
 
         return view('todo.index', compact('todos'))->render();
     }
